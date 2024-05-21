@@ -1,9 +1,8 @@
 package net.jazbelt.fullstackspringapi.todo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,14 @@ public class TodoController {
             @PathVariable("id") Integer id
     ) {
         return todoService.findById(id);
+    }
+
+    @DeleteMapping("/users/{username}/todos/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deteleTodo(
+            @PathVariable("username") String username,
+            @PathVariable("id") Integer id
+    ) {
+        todoService.deleteById(id);
     }
 }
