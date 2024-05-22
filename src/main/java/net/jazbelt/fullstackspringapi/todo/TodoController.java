@@ -31,10 +31,19 @@ public class TodoController {
 
     @DeleteMapping("/users/{username}/todos/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deteleTodo(
+    public void deleteTodo(
             @PathVariable("username") String username,
             @PathVariable("id") Integer id
     ) {
         todoService.deleteById(id);
+    }
+
+    @PutMapping("/users/{username}/todos")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateTodo(
+            @PathVariable("username") String username,
+            @RequestBody Todo todo
+    ) {
+        todoService.updateTodo(todo);
     }
 }
