@@ -46,4 +46,16 @@ public class TodoController {
     ) {
         todoService.updateTodo(todo);
     }
+
+    @PostMapping("/users/{username}/todos")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTodo(
+            @PathVariable("username") String username,
+            @RequestBody Todo todo
+    ) {
+        todoService.addTodo(username,
+                todo.getDescription(),
+                todo.getTargetDate(),
+                false);
+    }
 }
